@@ -14,6 +14,7 @@ import { CreateTemplateComponent } from './asset/create-template/create-template
 import { CreateAssetComponent } from './asset/create-asset/create-asset.component';
 import { FormListAssetComponent } from './asset/form-list-asset/form-list-asset.component';
 import { FormDetailAssetComponent } from './asset/form-detail-asset/form-detail-asset.component';
+import { DashboardAssetDetailComponent } from './asset/dashboard-asset-detail/dashboard-asset-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +28,13 @@ import { FormDetailAssetComponent } from './asset/form-detail-asset/form-detail-
     CreateAssetComponent,
     FormListAssetComponent,
     FormDetailAssetComponent,
+    DashboardAssetDetailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

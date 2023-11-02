@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApexOptions } from 'apexcharts';
+
+
 
 @Component({
   selector: 'dashboard',
@@ -7,74 +10,97 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit{
   
-  constructor(){
-    const data = {
-      labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
-      datasets: [{
-        label: '# of Votes',
-        data: [10, 19, 3, 5, 2, 3],
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)'
-        ],
-        borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)'
-        ],
-        borderWidth: 1,
-        fill: false
-      }]
-    };
+  assetName: string = "Aire acondicionado";
 
-    var options = {
-      scales: {
-        yAxes: [{
-          ticks: {
-            beginAtZero: true
-          },
-          gridLines: {
-            color: "rgba(204, 204, 204,0.1)"
-          }
-        }],
-        xAxes: [{
-          gridLines: {
-            color: "rgba(204, 204, 204,0.1)"
-          }
-        }]
-      },
-      legend: {
-        display: false
-      },
-      elements: {
-        point: {
-          radius: 0
-        }
-      }
-    };
-
-    // if ($("#lineChart").length) {
-    //   var lineChartCanvas = $("#lineChart").get(0).getContext("2d");
-    //   var lineChart = new Chart(lineChartCanvas, {
-    //     type: 'line',
-    //     data: data,
-    //     options: options
-    //   });
-    // }
-  }
+  constructor(){ }
   
 
   ngOnInit(): void {
+    this.showChartVoltage();
+    this.showChartStream();
+    this.showChartTemperature();
+    this.showChartOther();
     
     console.log("");
   }
 
-  
+  showChartVoltage(){
+    var options = {
+      chart: {
+        type: 'line'
+      },
+      series: [{
+        name: 'sales',
+        data: [30,40,45,50,49,60,70,91,125]
+      }],
+      xaxis: {
+        categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+      },
+      stroke: {
+        curve: 'smooth',
+      }
+    }
+    var chartVoltage = new ApexCharts(document.querySelector("#chartVoltage"), options);
+    chartVoltage.render();
+  }
+
+  showChartStream(){
+    var options = {
+      chart: {
+        type: 'line'
+      },
+      series: [{
+        name: 'sales',
+        data: [30,40,45,50,49,60,70,91,125]
+      }],
+      xaxis: {
+        categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+      },
+      stroke: {
+        curve: 'smooth',
+      }
+    }
+    var chartStream = new ApexCharts(document.querySelector("#chartStream"), options);
+    chartStream.render();
+  }
+
+  showChartTemperature(){
+    var options = {
+      chart: {
+        type: 'line'
+      },
+      series: [{
+        name: 'sales',
+        data: [30,40,45,50,49,60,70,91,125]
+      }],
+      xaxis: {
+        categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+      },
+      stroke: {
+        curve: 'smooth',
+      }
+    }
+    var chartTemperature = new ApexCharts(document.querySelector("#chartTemperature"), options);
+    chartTemperature.render();
+  }
+
+  showChartOther(){
+    var options = {
+      chart: {
+        type: 'line'
+      },
+      series: [{
+        name: 'sales',
+        data: [30,40,45,50,49,60,70,91,125]
+      }],
+      xaxis: {
+        categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
+      },
+      stroke: {
+        curve: 'smooth',
+      }
+    }
+    var chartOther = new ApexCharts(document.querySelector("#chartOther"), options);
+    chartOther.render();
+  }
 }
