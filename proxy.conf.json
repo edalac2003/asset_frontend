@@ -1,0 +1,8 @@
+{
+    "/asset/*": {
+        "target": "http://localhost:9090",
+        "secure": true,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}
