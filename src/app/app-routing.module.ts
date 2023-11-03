@@ -7,12 +7,14 @@ import { CreateTemplateComponent } from './asset/create-template/create-template
 import { CreateAssetComponent } from './asset/create-asset/create-asset.component';
 import { FormListAssetComponent } from './asset/form-list-asset/form-list-asset.component';
 import { FormDetailAssetComponent } from './asset/form-detail-asset/form-detail-asset.component';
+import { DashboardAssetDetailComponent } from './asset/dashboard-asset-detail/dashboard-asset-detail.component';
 
 const routes: Routes = [
   { path : '', redirectTo: 'home', pathMatch: 'full' },
   { path : 'home', component: HomeComponent },
   { path : 'register-user', component: FormRegisterComponent },
   { path : 'dashboard', component: DashboardComponent },
+  { path : 'dashboard-asset', component: DashboardAssetDetailComponent },
   { path : 'create-asset', component: CreateAssetComponent },
   { path : 'create-template', component: CreateTemplateComponent },
   { path : 'view-detail-asset', component: FormDetailAssetComponent },
