@@ -21,7 +21,7 @@ export class CreateTemplateComponent implements OnInit {
   listProperty : PropertyDTO[] = [];
   selectedProperties: PropertyDTO[] = [];
 
-  selectedProperty: any;
+  selectedProperty: PropertyDTO | undefined;
   controlProperty: any;
 
   ngOnInit(): void {
@@ -44,4 +44,9 @@ export class CreateTemplateComponent implements OnInit {
   addProperty(){
     console.log(". Aqui estoy.   " + this.selectedProperty);
   }
+
+  onSelectProperty(){
+    var propertyGroup = document.querySelector("#propertyGroup");
+  }
+
 }

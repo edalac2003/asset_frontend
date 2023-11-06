@@ -1,5 +1,5 @@
 export interface PropertyDTO{
-    id: Number;
-	name: string;
-	description: string;
+    id?: Number;
+	name?: string;
+	description?: string;
 }

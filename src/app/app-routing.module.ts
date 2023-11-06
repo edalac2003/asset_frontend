@@ -14,7 +14,7 @@ const routes: Routes = [
   { path : 'home', component: HomeComponent },
   { path : 'register-user', component: FormRegisterComponent },
   { path : 'dashboard', component: DashboardComponent },
-  { path : 'dashboard-asset/:id', component: DashboardAssetDetailComponent, pathMatch: 'full' },
+  { path : 'dashboard-asset', component: DashboardAssetDetailComponent },
   { path : 'create-asset', component: CreateAssetComponent },
   { path : 'create-template', component: CreateTemplateComponent },
   { path : 'list-asset', component: FormListAssetComponent },

@@ -4,7 +4,6 @@
     <div class="row" style="text-align: start">
       <div class="col-md-6 grid-margin">
         <h5 class="">Categoria</h5>
-
         <select class="form-control">
           <option>-- Seleccione --</option>
           <option value="category.id" *ngFor="let category of listCategory">
@@ -35,7 +34,7 @@
               <td>{{asset.category.name || ''}}</td>
               <td>{{asset.userResponsible}}</td>
               <td>{{asset.location}}</td>
-              <td><button class="btn btn-info" routerLink="/dashboard-asset">Ver Detalle</button></td>
+              <td><button class="btn btn-info" [routerLink]="['/dashboard-asset']" [queryParams]="{ id:asset.id}">Ver Detalle</button></td>
             </tr>
           </tbody>
         </table>

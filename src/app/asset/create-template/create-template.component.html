@@ -21,14 +21,11 @@
             <div class="row">                
                 <div class="col-md-6">
                     <label class="form-label">Propiedad</label>
-                    <select ngModel="selectedProperty" [formControl]="controlProperty">
-                        <option value="property.id" *ngFor="let property of listProperty">{{property.name}}</option>
-                    </select>
-                    <!-- <select id="property" class="form-select form-control" name="selectProperty" ngModel=""
-                        aria-label="Default select example" aria-placeholder="Property">
+                    <select class="form-control"
+                        id="propertyGroup" (change)="onSelectProperty()">
                         <option value="0">-- Seleccionar --</option>
                         <option value="property.id" *ngFor="let property of listProperty">{{property.name}}</option>
-                    </select> -->
+                    </select>
                 </div>
                 <div class="col-md-6">
                     <button type="button" (click)="addProperty()">Agregar</button>
