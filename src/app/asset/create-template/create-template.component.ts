@@ -32,14 +32,12 @@ export class CreateTemplateComponent implements OnInit {
   getCategories(){
     this.categoryService.getCategories().subscribe( data => {
       this.listCategory = data;
-      console.log(data);
     });
   }
 
   getProperties(){
     this.propertyService.getCategories().subscribe( data => {
       this.listProperty = data;
-      console.log(data);
     })
   }
 

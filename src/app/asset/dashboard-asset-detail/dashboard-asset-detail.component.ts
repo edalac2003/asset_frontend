@@ -1,21 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard-asset-detail',
   templateUrl: './dashboard-asset-detail.component.html',
   styleUrls: ['./dashboard-asset-detail.component.css']
 })
-export class DashboardAssetDetailComponent {
+export class DashboardAssetDetailComponent implements OnInit {
   assetName: string = "Aire acondicionado";
 
-  constructor(){ }
+  assetId!: number;
+
+  constructor(
+    private route: ActivatedRoute
+  ){ }
   
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(
+      params => {
+        this.assetId = params['id']
+        console.log("He recibido el Asset ID: " + this.assetId);
+      }
+    );
+
     this.showChartVoltage();
     this.showChartStream();
     this.showChartTemperature();
-    this.showChartOther();
     
     console.log("");
   }
@@ -80,23 +91,4 @@ export class DashboardAssetDetailComponent {
     chartTemperature.render();
   }
 
-  showChartOther(){
-    var options = {
-      chart: {
-        type: 'line'
-      },
-      series: [{
-        name: 'sales',
-        data: [30,40,45,50,49,60,70,91,125]
-      }],
-      xaxis: {
-        categories: [1991,1992,1993,1994,1995,1996,1997, 1998,1999]
-      },
-      stroke: {
-        curve: 'smooth',
-      }
-    }
-    var chartOther = new ApexCharts(document.querySelector("#chartOther"), options);
-    chartOther.render();
-  }
 }

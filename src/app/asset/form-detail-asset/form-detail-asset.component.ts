@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-form-detail-asset',
+  selector: 'detail-asset',
   templateUrl: './form-detail-asset.component.html',
   styleUrls: ['./form-detail-asset.component.css']
 })
 export class FormDetailAssetComponent {
+
+  assetName: string = "Aire acondicionado";;
+
+  constructor() { }
+
 
 }

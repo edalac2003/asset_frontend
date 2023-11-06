@@ -1,1 +1,45 @@
-<p>form-list-asset works!</p>
+<div class="content-wrapper">
+  <div class="row mb-3" style="text-align: center">
+    <h2 class="card-title">Listado de Activos Fijos</h2>
+    <div class="row" style="text-align: start">
+      <div class="col-md-6 grid-margin">
+        <h5 class="">Categoria</h5>
+
+        <select class="form-control">
+          <option>-- Seleccione --</option>
+          <option value="category.id" *ngFor="let category of listCategory">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-4 ">
+        <h5 class=""> d</h5>
+        <button class="btn btn-primary">Filtrar</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th [width]="'10%'">Código</th>
+              <th [width]="'30%'">Categoria</th>
+              <th [width]="'25%'">Responsable</th>
+              <th [width]="'25%'">Ubicación</th>
+              <th [width]="'10%'">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let asset of listAsset"> 
+              <td>{{asset.assetCode}}</td>
+              <td>{{asset.category.name || ''}}</td>
+              <td>{{asset.userResponsible}}</td>
+              <td>{{asset.location}}</td>
+              <td><button class="btn btn-info" routerLink="/dashboard-asset">Ver Detalle</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
