@@ -1,6 +1,8 @@
-export interface CategoryDTO {
-    id: Number;
-    name: string;
-    description: string;
-    status: boolean;
+export class CategoryDTO {
+    id: Number = 0;
+    name: string = '';
+    description: string = '';
+    status: boolean = false;
+
+    constructor(){}
 } 

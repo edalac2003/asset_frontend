@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfigService } from 'src/app/config/config.service';
+import { AssetTypeDTO } from 'src/app/model/AssetTypeDTO';
+import { AssetTypeDetailDTO } from 'src/app/model/AssetTypeDetailDTO';
 import { CategoryDTO } from 'src/app/model/CategoryDTO';
 import { PropertyDTO } from 'src/app/model/PropertyDTO';
+import { AssetTypeService } from 'src/app/services/asset-type.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { PropertyService } from 'src/app/services/property.service';
 
@@ -11,18 +15,28 @@ import { PropertyService } from 'src/app/services/property.service';
   styleUrls: ['./create-template.component.css']
 })
 export class CreateTemplateComponent implements OnInit {
+  // listCategory : CategoryDTO[] = [];
+  listCategories: Array<CategoryDTO> = [];
+  listProperty : PropertyDTO[] = [];
+  selectedProperties: Array<PropertyDTO> = [];
+
+  formulario = new FormGroup({
+    categoryOption: new FormControl<CategoryDTO>(new CategoryDTO()),
+    templateName: new FormControl(''),
+    propertyOption: new FormControl('', Validators.required)
+  });
+  
+
+  // selectedProperty: PropertyDTO | any;
+  selectedCategory!: CategoryDTO;
+  controlProperty: any;
 
   constructor(
     private categoryService: CategoryService,
-    private propertyService: PropertyService
-  ){ }
+    private propertyService: PropertyService,
+    private assetTypeService: AssetTypeService
+  ){   }
   
-  listCategory : CategoryDTO[] = [];
-  listProperty : PropertyDTO[] = [];
-  selectedProperties: PropertyDTO[] = [];
-
-  selectedProperty: PropertyDTO | undefined;
-  controlProperty: any;
 
   ngOnInit(): void {
     this.getCategories();
@@ -31,7 +45,7 @@ export class CreateTemplateComponent implements OnInit {
 
   getCategories(){
     this.categoryService.getCategories().subscribe( data => {
-      this.listCategory = data;
+      this.listCategories = data;
     });
   }
 
@@ -42,11 +56,62 @@ export class CreateTemplateComponent implements OnInit {
   }
 
   addProperty(){
-    console.log(". Aqui estoy.   " + this.selectedProperty);
+    var propertyID = this.formulario.get('propertyOption')?.value;
+    if(!this.findPropertyInSelected(Number(propertyID))){
+      this.selectedProperties.push(this.findProperty(Number(propertyID))!);
+    }else{
+      alert('Ya está incluído. Intente con otra propiedad');
+    }
   }
 
   onSelectProperty(){
-    var propertyGroup = document.querySelector("#propertyGroup");
+    // var propertyID = this.formulario.get('propertyOption')?.value;
+    // this.selectedProperties.push(this.findProperty(Number(propertyID))!);
   }
 
+  onSelectCategory(){
+    var categoryID = this.formulario.get('categoryOption')?.value;
+    this.selectedCategory = this.findCategorySelected(Number(categoryID));
+    // this.listCategory = this.formulario.get('categoryOption')?.value;
+  }
+
+  private findCategorySelected(id: number): CategoryDTO{
+    return this.listCategories.find(c => c.id == Number(id))!;
+  }
+
+
+  private findProperty(id: number): PropertyDTO{
+    return this.listProperty.find(p => p.id == Number(id))!;
+  }
+
+  private findPropertyInSelected(id: number): PropertyDTO{
+    return this.selectedProperties.find(p => p.id == Number(id))!;
+  }
+
+
+
+  validateFormData(): boolean{
+    return false;
+  }
+
+  createAssetType(){
+    var assetTypeDTO = new AssetTypeDTO();
+    assetTypeDTO.name = String(this.formulario.get('templateName')?.value);
+    assetTypeDTO.category = this.selectedCategory;
+    var listAssetDetail = new Array<AssetTypeDetailDTO>;
+    
+    this.selectedProperties.forEach(p => {
+      var assetTypeDetailDTO = new AssetTypeDetailDTO();
+      assetTypeDetailDTO.property = this.findProperty(p.id);
+      assetTypeDetailDTO.propertyId = p.id;
+      listAssetDetail.push(assetTypeDetailDTO);
+    })
+    assetTypeDTO.details = listAssetDetail;
+    console.log(assetTypeDTO);
+    var response = this.assetTypeService.create(assetTypeDTO).subscribe(
+      data => console.log(data)
+    );
+    // console.log('La respuesta es: ' + response);
+    
+  }
 }
