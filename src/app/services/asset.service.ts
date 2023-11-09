@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CategoryDTO } from '../model/CategoryDTO';
 import { AssetDTO } from '../model/AssetDTO';
 
 @Injectable({
@@ -18,4 +17,11 @@ export class AssetService {
     this.configUrl = '/asset/findAll';
     return this.http.get<Array<AssetDTO>>(this.configUrl);
   }
+
+  postCreateAsset(assetDTO: AssetDTO): Observable<any>{
+    this.configUrl = '/asset';
+    console.log('ASSET: ' + assetDTO);
+    return this.http.post<any>(this.configUrl, assetDTO);
+  }
+
 }

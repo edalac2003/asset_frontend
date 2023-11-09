@@ -7,7 +7,7 @@ export interface AssetDTO{
     purchaseValue: Number;
     purchaseDate: string;
     usefullLifetime: Number;
-    userResponsible: Number;
+    userResponsible: Number | string;
     location: string;
     status: boolean;
     category: CategoryDTO;

@@ -4,13 +4,14 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { CategoryService } from 'src/app/services/category.service';
 import { AssetService } from 'src/app/services/asset.service';
 import { AssetDTO } from 'src/app/model/AssetDTO';
+import { UpdateAssetModule } from 'src/app/asset/update-asset/update-asset.module';
 
 @Component({
-  selector: 'app-create-asset',
-  templateUrl: './create-asset.component.html',
-  styleUrls: ['./create-asset.component.css']
+  selector: 'app-update-asset',
+  templateUrl: './update-asset.component.html',
+  styleUrls: ['./update-asset.component.css']
 })
-export class CreateAssetComponent implements OnInit {
+export class UpdateAssetComponent implements OnInit {
   listCategories: Array<CategoryDTO> = [];
   selectedCategory!: CategoryDTO;
   formulario!: FormGroup;

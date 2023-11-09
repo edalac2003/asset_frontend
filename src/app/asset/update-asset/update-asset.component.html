@@ -2,7 +2,7 @@
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Registro de Activos Fijos</h4>
+          <h4 class="card-title">Actualizacion de Activos Fijos</h4>
           <form class="form" [formGroup]="formulario">
             <div class="row">
                 <div class="col-md-6">
@@ -16,7 +16,6 @@
                     <select id="categoryOption" class="form-select form-control" name="categoryOption" formControlName="categoryOption"
                         formControlName="categoryOption" (change)="onSelectCategory()"
                         aria-label="Default select example" aria-placeholder="Category">
-                        <!-- <option value="">-- Seleccionar --</option> -->
                         <option value={{category.id}} *ngFor="let category of listCategories">{{category.name}}</option>
                     </select>
                 </div>
@@ -52,8 +51,6 @@
            
             <div class="col-md-12 mt-3">
                 <button type="submit" class="btn btn-primary mr-2" (click)="createAsset()">Guardar</button>
-                <!-- <button type="submit" class="btn btn-primary mr-2" >Guardar</button> -->
-                <!-- <button class="btn btn-dark" >Cancelar</button> -->
               </div>
           </form>
         </div>
