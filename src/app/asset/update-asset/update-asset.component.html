@@ -2,13 +2,13 @@
     <div class="col-md-12 grid-margin stretch-card">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title">Registro de Activos Fijos</h4>
+          <h4 class="card-title">Modificar Activos Fijos</h4>
           <form class="form" [formGroup]="formulario">
             <div class="row">
                 <div class="col-md-6">
                     <label class="form-label">Código</label>
-                    <input id="assetCode" type="text" class="form-control" 
-                        formControlName="assetCode" placeholder="Ejemplo: AF0000001" 
+                    <input id="code" type="text" class="form-control" 
+                        formControlName="code" placeholder="Ejemplo: AF0000001" 
                         aria-label="Template name">
                 </div>
                 <div class="col">
@@ -16,7 +16,6 @@
                     <select id="categoryOption" class="form-select form-control" name="categoryOption" formControlName="categoryOption"
                         formControlName="categoryOption" (change)="onSelectCategory()"
                         aria-label="Default select example" aria-placeholder="Category">
-                        <!-- <option value="">-- Seleccionar --</option> -->
                         <option value={{category.id}} *ngFor="let category of listCategories">{{category.name}}</option>
                     </select>
                 </div>
@@ -38,22 +37,20 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="form-label">Responsable</label>
-                    <input id="userResponsible" type="text" class="form-control" 
-                        formControlName="userResponsible" placeholder="Carlos Aguirre" 
+                    <input id="responsible" type="text" class="form-control" 
+                        formControlName="responsible" placeholder="Carlos Aguirre" 
                         aria-label="Template name">
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Tiempo de Vida Util</label>
-                    <input id="usefullLifetime" type="text" class="form-control" 
-                        formControlName="usefullLifetime" placeholder="72" 
+                    <input id="usefulLife" type="text" class="form-control" 
+                        formControlName="usefulLife" placeholder="72" 
                         aria-label="Template name">
                 </div>
             </div>
            
             <div class="col-md-12 mt-3">
                 <button type="submit" class="btn btn-primary mr-2" (click)="createAsset()">Guardar</button>
-                <!-- <button type="submit" class="btn btn-primary mr-2" >Guardar</button> -->
-                <!-- <button class="btn btn-dark" >Cancelar</button> -->
               </div>
           </form>
         </div>

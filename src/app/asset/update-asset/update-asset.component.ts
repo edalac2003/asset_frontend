@@ -4,14 +4,14 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { CategoryService } from 'src/app/services/category.service';
 import { AssetService } from 'src/app/services/asset.service';
 import { AssetDTO } from 'src/app/model/AssetDTO';
-import { Router } from '@angular/router';
+import { UpdateAssetModule } from 'src/app/asset/update-asset/update-asset.module';
 
 @Component({
-  selector: 'app-create-asset',
-  templateUrl: './create-asset.component.html',
-  styleUrls: ['./create-asset.component.css']
+  selector: 'app-update-asset',
+  templateUrl: './update-asset.component.html',
+  styleUrls: ['./update-asset.component.css']
 })
-export class CreateAssetComponent implements OnInit {
+export class UpdateAssetComponent implements OnInit {
   listCategories: Array<CategoryDTO> = [];
   selectedCategory!: CategoryDTO;
   formulario!: FormGroup;
@@ -19,19 +19,18 @@ export class CreateAssetComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private assetService: AssetService,
-    private formBuilder: FormBuilder,
-    private router: Router
+    private formBuilder: FormBuilder
   ){   }
 
   ngOnInit(): void {
     this.getCategories();
     this.formulario = this.formBuilder.group({
-      assetCode: ['', Validators.required], // Código con validación requerida
+      code: ['', Validators.required], // Código con validación requerida
       categoryOption: ['', Validators.required], // Categoría con validación requerida
       purchaseValue: ['', Validators.required], // Valor de Compra con validación requerida
       purchaseDate: [''], // Fecha de Compra
-      userResponsible: [''], // Responsable
-      usefullLifetime: [''], // Tiempo de Vida Útil
+      responsible: [''], // Responsable
+      usefulLife: [''], // Tiempo de Vida Útil
     });
   }
 
@@ -53,13 +52,9 @@ export class CreateAssetComponent implements OnInit {
   createAsset(){
     if (this.formulario.valid) {
       let asset = this.formulario.value;
-      asset.category = this.selectedCategory
-      asset.status = true
+      console.log("asset------",asset)
       this.assetService.postCreateAsset(asset).subscribe();
     } 
-    this.router.navigate(['/list-asset']);
   }
-
-
 
 }

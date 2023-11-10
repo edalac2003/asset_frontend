@@ -8,6 +8,7 @@ import { CreateAssetComponent } from './asset/create-asset/create-asset.componen
 import { FormListAssetComponent } from './asset/form-list-asset/form-list-asset.component';
 import { FormDetailAssetComponent } from './asset/form-detail-asset/form-detail-asset.component';
 import { DashboardAssetDetailComponent } from './asset/dashboard-asset-detail/dashboard-asset-detail.component';
+import { UpdateAssetComponent } from './asset/update-asset/update-asset.component';
 
 const routes: Routes = [
   { path : '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path : 'create-asset', component: CreateAssetComponent },
   { path : 'create-template', component: CreateTemplateComponent },
   { path : 'list-asset', component: FormListAssetComponent },
+   {path : 'update-asset', component: UpdateAssetComponent },
 ];
 
 @NgModule({
