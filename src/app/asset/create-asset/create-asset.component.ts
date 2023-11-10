@@ -4,6 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { CategoryService } from 'src/app/services/category.service';
 import { AssetService } from 'src/app/services/asset.service';
 import { AssetDTO } from 'src/app/model/AssetDTO';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-asset',
@@ -18,18 +19,19 @@ export class CreateAssetComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private assetService: AssetService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ){   }
 
   ngOnInit(): void {
     this.getCategories();
     this.formulario = this.formBuilder.group({
-      code: ['', Validators.required], // Código con validación requerida
+      assetCode: ['', Validators.required], // Código con validación requerida
       categoryOption: ['', Validators.required], // Categoría con validación requerida
       purchaseValue: ['', Validators.required], // Valor de Compra con validación requerida
       purchaseDate: [''], // Fecha de Compra
-      responsible: [''], // Responsable
-      usefulLife: [''], // Tiempo de Vida Útil
+      userResponsible: [''], // Responsable
+      usefullLifetime: [''], // Tiempo de Vida Útil
     });
   }
 
@@ -51,9 +53,13 @@ export class CreateAssetComponent implements OnInit {
   createAsset(){
     if (this.formulario.valid) {
       let asset = this.formulario.value;
-      console.log("asset------",asset)
+      asset.category = this.selectedCategory
+      asset.status = true
       this.assetService.postCreateAsset(asset).subscribe();
     } 
+    this.router.navigate(['/list-asset']);
   }
+
+
 
 }

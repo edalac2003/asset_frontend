@@ -26,7 +26,6 @@
               <th [width]="'20%'">Responsable</th>
               <th [width]="'20%'">Ubicación</th>
               <th [width]="'10%'">Acciones</th>
-              <th [width]="'10%'">Eliminar</th>
             </tr>
           </thead>
           <tbody>
@@ -35,8 +34,18 @@
               <td>{{asset.category.name || ''}}</td>
               <td>{{asset.userResponsible}}</td>
               <td>{{asset.location}}</td>
-              <td><button class="btn btn-info" [routerLink]="['/dashboard-asset']" [queryParams]="{ id:asset.id}">Ver Detalle</button></td>
-              <td><button class="btn btn-danger" [routerLink]="['/dashboard-asset']" [queryParams]="{ id:asset.id}">Dar de baja</button></td>
+              <td>
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Acción
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" [routerLink]="['/dashboard-asset']" [queryParams]="{ id:asset.id}">Ver Detalle</a>
+                    <a class="dropdown-item" [routerLink]="['/dashboard-asset']" [queryParams]="{ id:asset.id}">Modificar</a>
+                    <a class="dropdown-item" href="#">Dar de baja</a>
+                  </div>
+                </div>
+              </td>
             </tr>
           </tbody>
         </table>

@@ -20,7 +20,6 @@ export class AssetService {
 
   postCreateAsset(assetDTO: AssetDTO): Observable<any>{
     this.configUrl = '/asset';
-    console.log('ASSET: ' + assetDTO);
     return this.http.post<any>(this.configUrl, assetDTO);
   }
 
