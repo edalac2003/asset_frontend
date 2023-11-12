@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Route } from '@angular/router';
 import { ConfigService } from 'src/app/config/config.service';
 import { AssetTypeDTO } from 'src/app/model/AssetTypeDTO';
 import { AssetTypeDetailDTO } from 'src/app/model/AssetTypeDetailDTO';
@@ -21,7 +22,7 @@ export class CreateTemplateComponent implements OnInit {
   selectedProperties: Array<PropertyDTO> = [];
 
   formulario = new FormGroup({
-    categoryOption: new FormControl(new CategoryDTO(), Validators.required),
+    categoryOption: new FormControl('', Validators.required),
     templateName: new FormControl('', Validators.required),
     propertyOption: new FormControl('', Validators.required)
   });

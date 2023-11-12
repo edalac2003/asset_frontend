@@ -34,7 +34,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-user" aria-expanded="false" aria-controls="ui-user">
               <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
+                <i class="mdi mdi-account-multiple"></i>
               </span>
               <span class="menu-title">Usuarios</span>
               <i class="menu-arrow"></i>
@@ -50,7 +50,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-asset" aria-expanded="false" aria-controls="ui-asset">
               <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
+                <i class="mdi mdi-server"></i>
               </span>
               <span class="menu-title">Activos Fijos</span>
               <i class="menu-arrow"></i>
@@ -60,6 +60,21 @@
                 <li class="nav-item"> <a class="nav-link" routerLink="/list-asset">Listado de Activos</a></li>
                 <li class="nav-item"> <a class="nav-link" routerLink="/create-asset">Registrar Activo Fijo</a></li>
                 <li class="nav-item"> <a class="nav-link" routerLink="/create-template">Registrar Categoria Activo Fijo</a></li>   
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#ui-template" aria-expanded="false" aria-controls="ui-template">
+              <span class="menu-icon">
+                <i class="mdi mdi-library-books"></i>
+              </span>
+              <span class="menu-title">Templates</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-template">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" routerLink="/create-template">Crear Plantilla de Activo Fijo</a></li>   
+                <li class="nav-item"> <a class="nav-link" routerLink="/list-template">Listado de Plantillas</a></li>
               </ul>
             </div>
           </li>

@@ -17,4 +17,9 @@ export class AssetTypeService {
     this.configUrl = '/asset/asset-type';
     return this.http.post<any>(this.configUrl, assetTypeDTO);
   }
+
+  findAll(): Observable<Array<AssetTypeDTO>>{
+    this.configUrl = '/asset/asset-type/findAll';
+    return this.http.get<Array<AssetTypeDTO>>(this.configUrl);
+  }
 }
