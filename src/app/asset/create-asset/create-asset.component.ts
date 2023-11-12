@@ -57,10 +57,10 @@ export class CreateAssetComponent implements OnInit {
       asset.category = this.selectedCategory;
       asset.status = true;
 
-      this.assetService.postCreateAsset(asset).subscribe(() => {
-        // Lógica adicional después de crear el activo si es necesario
-        this.router.navigate(['/list-asset']);
-      });
+      // this.assetService.postCreateAsset(asset).subscribe(() => {
+      //   // Lógica adicional después de crear el activo si es necesario
+      //   this.router.navigate(['/list-asset']);
+      // });
     } 
   }
 }
