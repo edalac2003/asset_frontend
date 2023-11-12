@@ -10,9 +10,4 @@ export class AssetTypeDTO{
 
     constructor(){}
 
-    // constructor(name: string, category: CategoryDTO, details: Array<AssetTypeDetailDTO>){
-    //     this.name = name;
-    //     this.category = category;
-    //     this.details = details;
-    // }
 }
