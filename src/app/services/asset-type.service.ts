@@ -15,7 +15,11 @@ export class AssetTypeService {
 
   create(assetTypeDTO: AssetTypeDTO): Observable<any>{
     this.configUrl = '/asset/asset-type';
-    console.log('ASSETTYPE: ' + assetTypeDTO);
     return this.http.post<any>(this.configUrl, assetTypeDTO);
+  }
+
+  findAll(): Observable<Array<AssetTypeDTO>>{
+    this.configUrl = '/asset/asset-type/findAll';
+    return this.http.get<Array<AssetTypeDTO>>(this.configUrl);
   }
 }

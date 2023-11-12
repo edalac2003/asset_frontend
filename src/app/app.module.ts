@@ -10,11 +10,13 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarTopComponent } from './component/sidebar-top/sidebar-top.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { CreateTemplateComponent } from './asset/create-template/create-template.component';
+import { CreateTemplateComponent } from './template/create-template/create-template.component';
 import { CreateAssetComponent } from './asset/create-asset/create-asset.component';
 import { FormListAssetComponent } from './asset/form-list-asset/form-list-asset.component';
 import { FormDetailAssetComponent } from './asset/form-detail-asset/form-detail-asset.component';
 import { DashboardAssetDetailComponent } from './asset/dashboard-asset-detail/dashboard-asset-detail.component';
+import { ListTemplateComponent } from './template/list-template/list-template.component';
+import { DetailTemplateComponent } from './template/detail-template/detail-template.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { DashboardAssetDetailComponent } from './asset/dashboard-asset-detail/da
     FormListAssetComponent,
     FormDetailAssetComponent,
     DashboardAssetDetailComponent,
+    ListTemplateComponent,
+    DetailTemplateComponent,
   ],
   imports: [
     BrowserModule,

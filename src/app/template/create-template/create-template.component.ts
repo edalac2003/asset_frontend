@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Route } from '@angular/router';
 import { ConfigService } from 'src/app/config/config.service';
 import { AssetTypeDTO } from 'src/app/model/AssetTypeDTO';
 import { AssetTypeDetailDTO } from 'src/app/model/AssetTypeDetailDTO';
@@ -21,8 +22,8 @@ export class CreateTemplateComponent implements OnInit {
   selectedProperties: Array<PropertyDTO> = [];
 
   formulario = new FormGroup({
-    categoryOption: new FormControl<CategoryDTO>(new CategoryDTO()),
-    templateName: new FormControl(''),
+    categoryOption: new FormControl('', Validators.required),
+    templateName: new FormControl('', Validators.required),
     propertyOption: new FormControl('', Validators.required)
   });
   
@@ -57,10 +58,12 @@ export class CreateTemplateComponent implements OnInit {
 
   addProperty(){
     var propertyID = this.formulario.get('propertyOption')?.value;
-    if(!this.findPropertyInSelected(Number(propertyID))){
-      this.selectedProperties.push(this.findProperty(Number(propertyID))!);
-    }else{
-      alert('Ya está incluído. Intente con otra propiedad');
+    if(propertyID != ''){
+      if(!this.findPropertyInSelected(Number(propertyID))){
+        this.selectedProperties.push(this.findProperty(Number(propertyID))!);
+      }else{
+        alert('Ya está incluído. Intente con otra propiedad');
+      }
     }
   }
 
@@ -91,10 +94,6 @@ export class CreateTemplateComponent implements OnInit {
 
 
   validateFormData(): boolean{
-    return false;
-  }
-
-  createAssetType(){
     var assetTypeDTO = new AssetTypeDTO();
     assetTypeDTO.name = String(this.formulario.get('templateName')?.value);
     assetTypeDTO.category = this.selectedCategory;
@@ -105,13 +104,21 @@ export class CreateTemplateComponent implements OnInit {
       assetTypeDetailDTO.property = this.findProperty(p.id);
       assetTypeDetailDTO.propertyId = p.id;
       listAssetDetail.push(assetTypeDetailDTO);
-    })
+    });
     assetTypeDTO.details = listAssetDetail;
-    console.log(assetTypeDTO);
+    if(assetTypeDTO.name && assetTypeDTO.category && assetTypeDTO.details && assetTypeDTO.details.length > 0){
+      console.log(assetTypeDTO);
+      this.createAssetType(assetTypeDTO);
+      return true;
+    }else{
+      alert('Faltan campos por diligenciar');
+    }
+    return false;
+  }
+
+  createAssetType(assetTypeDTO: AssetTypeDTO){    
     var response = this.assetTypeService.create(assetTypeDTO).subscribe(
       data => console.log(data)
     );
-    // console.log('La respuesta es: ' + response);
-    
   }
 }

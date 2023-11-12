@@ -34,7 +34,7 @@
           <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-user" aria-expanded="false" aria-controls="ui-user">
               <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
+                <i class="mdi mdi-account-multiple"></i>
               </span>
               <span class="menu-title">Usuarios</span>
               <i class="menu-arrow"></i>
@@ -42,51 +42,64 @@
             <div class="collapse" id="ui-user">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" routerLink="/register-user">Registrar Usuario</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../ui-features/dropdowns.html">Listar Usuarios</a></li>
-                <li class="nav-item"> <a class="nav-link" href="../ui-features/typography.html">Otro Menú</a></li>
+                <li class="nav-item"> <a class="nav-link" routerLink="/register-user">Listar Usuarios</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item menu-items">
             <a class="nav-link" data-toggle="collapse" href="#ui-asset" aria-expanded="false" aria-controls="ui-asset">
               <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
+                <i class="mdi mdi-air-conditioner"></i>
               </span>
               <span class="menu-title">Activos Fijos</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-asset">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" routerLink="/list-asset">Listado de Activos</a></li>
                 <li class="nav-item"> <a class="nav-link" routerLink="/create-asset">Registrar Activo Fijo</a></li>
-                <li class="nav-item"> <a class="nav-link" routerLink="/create-template">Registrar Categoria Activo Fijo</a></li>   
+                <li class="nav-item"> <a class="nav-link" routerLink="/list-asset">Listado de Activos</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-asset" aria-expanded="false" aria-controls="ui-asset">
+            <a class="nav-link" data-toggle="collapse" href="#ui-template" aria-expanded="false" aria-controls="ui-template">
               <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
+                <i class="mdi mdi-library-books"></i>
               </span>
-              <span class="menu-title">Solcitud de Mantenimiento</span>
+              <span class="menu-title">Templates</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-asset">
+            <div class="collapse" id="ui-template">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" routerLink="/list-asset">Listado de Solcitudes</a></li>
-                <li class="nav-item"> <a class="nav-link" routerLink="/create-asset">Registrar Solicitud</a></li>   
+                <li class="nav-item"> <a class="nav-link" routerLink="/create-template">Crear Plantilla de Activo Fijo</a></li>   
+                <li class="nav-item"> <a class="nav-link" routerLink="/list-template">Listado de Plantillas</a></li>
               </ul>
             </div>
           </li>
           <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-asset" aria-expanded="false" aria-controls="ui-asset">
+            <a class="nav-link" data-toggle="collapse" href="#ui-maintenance-request" aria-expanded="false" aria-controls="ui-maintenance-request">
               <span class="menu-icon">
-                <i class="mdi mdi-laptop"></i>
+                <i class="mdi mdi-ambulance"></i>
               </span>
-              <span class="menu-title">Ordenes de Mantenimiento</span>
+              <span class="menu-title">Solicitudes</span>
               <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-asset">
+            <div class="collapse" id="ui-maintenance-request">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" routerLink="/create-asset">Registrar Solicitud</a></li>   
+                <li class="nav-item"> <a class="nav-link" routerLink="/list-asset">Listado de Solicitudes</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item menu-items">
+            <a class="nav-link" data-toggle="collapse" href="#ui-maintenance-order" aria-expanded="false" aria-controls="ui-maintenance-order">
+              <span class="menu-icon">
+                <i class="mdi mdi-worker"></i>
+              </span>
+              <span class="menu-title">Ordenes</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-maintenance-order">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" routerLink="/list-asset">Listado de Ordenes</a></li>   
               </ul>

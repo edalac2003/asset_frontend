@@ -1,0 +1,45 @@
+<div>
+  <div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Registrar Categoria Activo Fijo</h4>
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <label class="form-label">Nombre Plantilla</label>
+            <input id="templateName" type="text" class="form-control" formControlName="templateName"
+              placeholder="Nombre Plantilla" aria-label="Template name" />
+          </div>
+          <div class="col-md-6 form-group">
+            <label class="form-label">Categoria</label>
+            <input id="categoryName" type="text" class="form-control" formControlName="categoryName"
+              placeholder="Categoria" aria-label="Template name" />
+          </div>
+        </div>
+        <div class="row mt-1">
+            <label class="form-label">Propiedades</label>
+          <div class="col-lg-12 grid-margin stretch-card">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <!-- <th width="75%">Propiedad</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let property of listProperties">
+                    <td>{{ property.name }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-md-12">
+                <button class="btn btn-inverse-primary" routerLink="/list-template">Cerrar</button>
+            </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,8 +1,10 @@
-<div class="container-scroller">
+<div class="">
     <sidebar></sidebar>
     <div class="container-fluid page-body-wrapper">
-      <sidebar-top></sidebar-top>
-      <div class="main-panel d-none d-xl-block col-xl-auto bd-toc">
+      <div class="main-panel">
+        <sidebar-top></sidebar-top>
+      </div>
+      <div class="main-panel d-none d-xl-block col-xl-auto bd-toc container-scroller">
         <router-outlet></router-outlet>
       </div>
   </div>
