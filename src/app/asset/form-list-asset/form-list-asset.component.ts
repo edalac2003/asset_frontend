@@ -1,3 +1,4 @@
+// form-list-asset.component.ts
 import { Component, OnInit } from '@angular/core';
 import { AssetDTO } from 'src/app/model/AssetDTO';
 import { CategoryDTO } from 'src/app/model/CategoryDTO';
@@ -10,8 +11,7 @@ import { CategoryService } from 'src/app/services/category.service';
   styleUrls: ['./form-list-asset.component.css'],
 })
 export class FormListAssetComponent implements OnInit {
-
-  listCategory : CategoryDTO[] = [];
+  listCategory: CategoryDTO[] = [];
   listAsset: AssetDTO[] = [];
 
   constructor(
@@ -21,19 +21,21 @@ export class FormListAssetComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
+    this.assetService.activos$.subscribe((activos) => {
+      this.listAsset = activos;
+    });
     this.findAssetList();
   }
 
-  getCategories(){
-    this.categoryService.getCategories().subscribe( data => {
+  getCategories() {
+    this.categoryService.getCategories().subscribe((data) => {
       this.listCategory = data;
     });
   }
 
-  findAssetList(){
-    this.assetService.getAssetFindAll().subscribe(data => {
-      this.listAsset = data;
-      console.log('Asset: ' + data);
-    })
+  findAssetList() {
+    this.assetService.getAssetFindAll().subscribe((data) => {
+      // La actualización de la lista se maneja automáticamente a través del servicio
+    });
   }
 }
