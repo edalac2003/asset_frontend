@@ -13,6 +13,7 @@ import { AssetTypeService } from 'src/app/services/asset-type.service';
 import { AssetTypeDetailDTO } from 'src/app/model/AssetTypeDetailDTO';
 import {ResponsableService } from 'src/app/services/responsable.service'
 import { UserDTO } from 'src/app/model/userDTO';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-create-asset',
@@ -32,7 +33,9 @@ export class CreateAssetComponent implements OnInit {
   selectedAssetType!: AssetTypeDTO;
   selectedAssetTypeDetail!: AssetTypeDTO;
   selecteduserResponsible!: UserDTO;
-  formulario!: FormGroup;  
+  formulario!: FormGroup; 
+  dynamicFormControls: { [key: string]: FormControl } = {}; 
+  dynamicFormControlsSubject = new Subject<any>();
 
   constructor(
     private categoryService: CategoryService,
@@ -60,6 +63,7 @@ export class CreateAssetComponent implements OnInit {
       location:[''],
       assetType:[''],
     });
+    
   }
 
   getCategories(){
@@ -85,35 +89,50 @@ export class CreateAssetComponent implements OnInit {
       this.listResponsable = data
     });
     
-  }
-
-  filterAssetType(categoryID: number){
-    this.filterListAssetType = this.listAssetType.filter(
-      (assetType) => assetType.category?.id === categoryID
-    );
-  }
+  }  
 
   onSelectAssetTypeDetail(){
+    this.clearDynamicFormControls();
     var assetTypeID = this.formulario.get('assetType')?.value;
     this.selectedAssetTypeDetail = this.findAssetTypeDetailSelected(Number(assetTypeID));
+    
     this.listAssetTypeDetail = this.selectedAssetTypeDetail.details;
-  }
+
+    this.listAssetTypeDetail.forEach(detail => {
+      this.dynamicFormControls[detail?.property?.name || 'defaultName'] = new FormControl('');
+    });
+    this.formulario.addControl('properties', new FormGroup(this.dynamicFormControls));  
+  }  
 
   onSelectCategory(){
+    this.clearDynamicFormControls();
+    this.listAssetTypeDetail = [] as AssetTypeDetailDTO[];
+    this.selectedAssetType = {} as AssetTypeDTO;
+    this.formulario.patchValue({
+      assetType: ''
+    });
     var categoryID = this.formulario.get('category')?.value;
     this.selectedCategory = this.findCategorySelected(Number(categoryID));
-    this.filterAssetType(Number(categoryID));
+    this.filterListAssetType = this.filterAssetType(Number(categoryID));
+
   }
 
   onSelectAssetType(){
     var AssetTypeID = this.formulario.get('assetType')?.value;
-    this.selectedAssetType = this.findAssetTypeSelected(Number(AssetTypeID));    
+    this.selectedAssetType = this.findAssetTypeSelected(Number(AssetTypeID));  
+      
   }
 
   onSelectUserResponsible(){
     var userResponsibleID = this.formulario.get('userResponsible')?.value;
     this.selecteduserResponsible = this.findUserResponsibleSelected(Number(userResponsibleID));
-    console.log(this.selecteduserResponsible)
+  }
+
+  clearDynamicFormControls() {
+    Object.keys(this.dynamicFormControls).forEach(controlName => {
+      this.formulario.removeControl(controlName);
+    });
+    this.dynamicFormControls = {};
   }
 
   private findUserResponsibleSelected(userResponsibleID: number): UserDTO{
@@ -132,21 +151,28 @@ export class CreateAssetComponent implements OnInit {
     return this.filterListAssetType.find(a => a.id == Number(assetTypeID))!;
   }
 
+  private filterAssetType(categoryID: number){
+    return this.listAssetType.filter(
+      (assetType) => assetType.category?.id === categoryID
+    );
+  }
+
 
 
   createAsset(){
     if (this.formulario.valid) {
       let asset = this.formulario.value;
-      // console.log("asset--------",asset)
-      // asset.status = true;
       asset.category = this.selectedCategory;
-      // asset.properties = this.selectedProperties.map(property => ({
-      //   propertyId: property.id,
-      //   value: property.name,
-      // }));
+
+      asset.properties = {};
+      for (const propertyName in this.dynamicFormControls) {
+        if (this.dynamicFormControls.hasOwnProperty(propertyName)) {
+          asset.properties[propertyName] = this.dynamicFormControls[propertyName].value;
+        }
+      }
 
       this.assetService.postCreateAsset(asset).subscribe(() => {
-        this.router.navigate(['/list-asset']);
+      this.router.navigate(['/list-asset']);
       });
     } 
   }

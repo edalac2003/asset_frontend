@@ -37,10 +37,12 @@
                         <div class="col-md-6">
                             <label class="form-label">Usuario Responsable</label>
                             <select id="userResponsible" class="form-select form-control" name="userResponsible"
-                                formControlName="userResponsible" formControlName="userResponsible" (change)="onSelectUserResponsible()"
-                                aria-label="Default select example" aria-placeholder="userResponsible">
+                                formControlName="userResponsible" formControlName="userResponsible"
+                                (change)="onSelectUserResponsible()" aria-label="Default select example"
+                                aria-placeholder="userResponsible">
                                 <option value="">-- Seleccionar --</option>
-                                <option value={{userResponsible.id}} *ngFor="let userResponsible of listResponsable">{{userResponsible.userName}}
+                                <option value={{userResponsible.id}} *ngFor="let userResponsible of listResponsable">
+                                    {{userResponsible.userName}}
                                 </option>
                             </select>
                         </div>
@@ -83,8 +85,11 @@
                                         <tr *ngFor="let detail  of listAssetTypeDetail">
                                             <td>{{ detail?.property?.name }}</td>
                                             <td>
-                                                <input id="properties" type="text" class="form-control"
-                                                    formControlName="properties" aria-label="Template name">
+                                                <input 
+                                                    id="properties"
+                                                    type="text"
+                                                    class="form-control"
+                                                    [formControl]="dynamicFormControls[detail?.property?.name || 'defaultName']" aria-label="Template name">
                                             </td>
                                         </tr>
                                     </tbody>
