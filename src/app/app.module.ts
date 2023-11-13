@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { FormRegisterComponent } from './user/form-register/form-register.component';
+import { FormRegisterUserComponent } from './user/form-register-user/form-register-user.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { HomeComponent } from './home/home.component';
@@ -19,12 +19,14 @@ import { ListTemplateComponent } from './template/list-template/list-template.co
 import { DetailTemplateComponent } from './template/detail-template/detail-template.component';
 import { LoginComponent } from './login/login.component';
 import { DatePipe } from '@angular/common';
-import { FormListComponent } from './user/form-list/form-list.component';
+import { FormListUserComponent } from './user/form-list-user/form-list-user.component';
+import { DetailUserComponent } from './user/detail-user/detail-user.component';
+import { FormDetailUserComponent } from './user/form-detail-user/form-detail-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormRegisterComponent,
+    FormRegisterUserComponent,
     SidebarComponent,
     HomeComponent,
     DashboardComponent,
@@ -37,7 +39,9 @@ import { FormListComponent } from './user/form-list/form-list.component';
     ListTemplateComponent,
     DetailTemplateComponent,
     LoginComponent,
-    FormListComponent
+    FormListUserComponent,
+    DetailUserComponent,
+    FormDetailUserComponent
   ],
   imports: [
     BrowserModule,

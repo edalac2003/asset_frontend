@@ -16,8 +16,6 @@ export class DashboardComponent implements OnInit {
     this.showChartRequest();
     this.showChartRepairs();
     this.showChartCost();
-
-    console.log('');
   }
 
   showChartRequest() {
