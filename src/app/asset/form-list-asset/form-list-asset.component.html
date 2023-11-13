@@ -33,7 +33,7 @@
             <tr *ngFor="let asset of listAsset">
               <td>{{ asset.assetCode }}</td>
               <td>{{ asset.category.name || "" }}</td>
-              <td>{{ asset.userResponsible }}</td>
+              <td>{{ asset.userResponsible.person.firstName + ' ' + asset.userResponsible.person.lastName }}</td>
               <td>{{ asset.location }}</td>
               <td>
                 <div class="dropdown">

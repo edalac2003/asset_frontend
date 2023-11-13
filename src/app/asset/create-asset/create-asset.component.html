@@ -49,14 +49,14 @@
                         <div class="col-md-6">
                             <label class="form-label">Tiempo de Vida Util</label>
                             <input id="usefullLifetime" type="text" class="form-control"
-                                formControlName="usefullLifetime" placeholder="72" aria-label="Template name">
+                                formControlName="usefullLifetime" placeholder="0" aria-label="Template name">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <label class="form-label">Ubicación del Activo</label>
                             <input id="location" type="text" class="form-control" formControlName="location"
-                                placeholder="Oficina 1" aria-label="Template name">
+                                placeholder="Ubicación" aria-label="Template name">
                         </div>
                         <div class="col">
                             <label class="form-label">Tipo Activo</label>
@@ -85,10 +85,7 @@
                                         <tr *ngFor="let detail  of listAssetTypeDetail">
                                             <td>{{ detail?.property?.name }}</td>
                                             <td>
-                                                <input 
-                                                    id="properties"
-                                                    type="text"
-                                                    class="form-control"
+                                                <input id="properties" type="text" class=""
                                                     [formControl]="dynamicFormControls[detail?.property?.name || 'defaultName']" aria-label="Template name">
                                             </td>
                                         </tr>
