@@ -5,7 +5,7 @@ export class AssetTypeDetailDTO{
     id: number = 0;
     assetTypeId: number = 0;
     propertyId: number = 0;
-    property: PropertyDTO | undefined;
+    property: PropertyDTO = new PropertyDTO();
 
     constructor(){}
 }

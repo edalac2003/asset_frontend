@@ -13,7 +13,7 @@ export class PropertyService {
     this.configUrl = '';
   }
 
-  getCategories(): Observable<Array<PropertyDTO>>{
+  getProperties(): Observable<Array<PropertyDTO>>{
     this.configUrl = '/asset/property/findAll';
     return this.http.get<Array<PropertyDTO>>(this.configUrl);
   }

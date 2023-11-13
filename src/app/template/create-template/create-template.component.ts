@@ -51,7 +51,7 @@ export class CreateTemplateComponent implements OnInit {
   }
 
   getProperties(){
-    this.propertyService.getCategories().subscribe( data => {
+    this.propertyService.getProperties().subscribe( data => {
       this.listProperty = data;
     })
   }
