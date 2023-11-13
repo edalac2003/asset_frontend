@@ -2,7 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { AssetDTO } from '../model/AssetDTO';
 
 @Injectable({
@@ -25,10 +25,28 @@ export class AssetService {
     );
   }
 
+  getAssetFindAllByCategory(categoryID: number): Observable<AssetDTO[]> {
+    this.configUrl = '/asset/findAll';
+    return this.http.get<AssetDTO[]>(this.configUrl).pipe(
+      map((activos) => activos.filter(activo => activo.category.id == categoryID)),
+      tap((activosFiltrados) => this.activosSubject.next(activosFiltrados)),
+    );
+  }
+
+  getFilteredAssetsByCode(assetCodePrefix: string): Observable<AssetDTO[]> {
+    this.configUrl = '/asset/findAll';
+    return this.http.get<AssetDTO[]>(this.configUrl).pipe(
+      map((activos) => activos.filter(
+        activo => activo.assetCode.startsWith(assetCodePrefix)
+      )),
+      tap((activosFiltrados) => this.activosSubject.next(activosFiltrados))
+    );
+  }
+
   postCreateAsset(assetDTO: AssetDTO): Observable<any> {
     this.configUrl = '/asset';
     return this.http.post<any>(this.configUrl, assetDTO).pipe(
-      tap(() => this.getAssetFindAll().subscribe()) // Recarga la lista después de crear un activo
+      tap(() => this.getAssetFindAll().subscribe()) 
     );
   }
 
