@@ -9,26 +9,27 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  formulario!: FormGroup; 
-  isLoggedIn$ = this.authService.isLoggedIn$;
-
+  formulario!: FormGroup;
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder,
-    private router: Router
     ) {}
 
-    ngOnInit(): void {
-      this.formulario = this.formBuilder.group({
-        user: ['', Validators.required],
-        password: ['', Validators.required]
-      });
-    }
+  ngOnInit(): void {
+    this.formulario = this.formBuilder.group({
+      user: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
 
-  login(): void {
-    var username = this.formulario.get('user')?.value;
-    var password = this.formulario.get('password')?.value;
-    this.authService.login(username, password);
-    this.router.navigate(['/dashboard']);
+  login() {
+    const user = { 
+      username: this.formulario.get('user')?.value,
+      password: this.formulario.get('password')?.value
+    };
+    if(user){
+      user.username == 'admin' && user.password == 'admin' ? this.authService.setSession(user) : alert('Usuario o Contraseña Incorrectos');
+    }
+    
   }
 }
