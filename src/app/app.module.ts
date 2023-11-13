@@ -17,6 +17,7 @@ import { DashboardAssetDetailComponent } from './asset/dashboard-asset-detail/da
 import { CreateTemplateComponent } from './template/create-template/create-template.component';
 import { ListTemplateComponent } from './template/list-template/list-template.component';
 import { DetailTemplateComponent } from './template/detail-template/detail-template.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DetailTemplateComponent } from './template/detail-template/detail-templ
     DashboardAssetDetailComponent,
     ListTemplateComponent,
     DetailTemplateComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
