@@ -14,6 +14,7 @@ import { AssetTypeDetailDTO } from 'src/app/model/AssetTypeDetailDTO';
 import {ResponsableService } from 'src/app/services/responsable.service'
 import { UserDTO } from 'src/app/model/userDTO';
 import { Subject } from 'rxjs';
+import { AssetPropertyDTO } from 'src/app/model/AssetPropertyDTO';
 
 @Component({
   selector: 'app-create-asset',
@@ -35,7 +36,7 @@ export class CreateAssetComponent implements OnInit {
   selecteduserResponsible!: UserDTO;
   formulario!: FormGroup; 
   dynamicFormControls: { [key: string]: FormControl } = {}; 
-  dynamicFormControlsSubject = new Subject<any>();
+
 
   constructor(
     private categoryService: CategoryService,
@@ -102,6 +103,7 @@ export class CreateAssetComponent implements OnInit {
       this.dynamicFormControls[detail?.property?.name || 'defaultName'] = new FormControl('');
     });
     this.formulario.addControl('properties', new FormGroup(this.dynamicFormControls));  
+
   }  
 
   onSelectCategory(){
@@ -158,19 +160,22 @@ export class CreateAssetComponent implements OnInit {
   }
 
 
-
   createAsset(){
     if (this.formulario.valid) {
       let asset = this.formulario.value;
+      console.log('asset',asset);
       asset.category = this.selectedCategory;
-
-      asset.properties = {};
-      for (const propertyName in this.dynamicFormControls) {
-        if (this.dynamicFormControls.hasOwnProperty(propertyName)) {
-          asset.properties[propertyName] = this.dynamicFormControls[propertyName].value;
-        }
-      }
-
+      asset.properties = this.listAssetTypeDetail.map(
+        ({
+          property,
+        }) => ({
+          property,
+          value: Object.keys(this.dynamicFormControls).forEach((propertyName) => {
+            propertyName === property.name ? this.dynamicFormControls[propertyName]?.value: null;            
+          }),
+        })
+      );
+      
       this.assetService.postCreateAsset(asset).subscribe(() => {
       this.router.navigate(['/list-asset']);
       });
