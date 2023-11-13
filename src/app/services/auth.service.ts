@@ -17,9 +17,10 @@ export class AuthService {
   }
 
   login(username: string, password: string):void {
-    // Lógica de autenticación aquí
-    this.loggedIn = true;
-    this.isLoggedInSubject.next(true);
+    if(username == 'admin' && password == 'admin'){
+      this.loggedIn = true;
+      this.isLoggedInSubject.next(true);
+    }
   }
 
   logout():void  {

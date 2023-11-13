@@ -1,4 +1,3 @@
-// create-asset.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CategoryDTO } from 'src/app/model/CategoryDTO';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -13,8 +12,6 @@ import { AssetTypeService } from 'src/app/services/asset-type.service';
 import { AssetTypeDetailDTO } from 'src/app/model/AssetTypeDetailDTO';
 import {ResponsableService } from 'src/app/services/responsable.service'
 import { UserDTO } from 'src/app/model/userDTO';
-import { Subject } from 'rxjs';
-import { AssetPropertyDTO } from 'src/app/model/AssetPropertyDTO';
 
 @Component({
   selector: 'app-create-asset',

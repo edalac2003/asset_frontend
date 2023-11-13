@@ -12,18 +12,19 @@
                   <h4 class="mt-1 mb-5 pb-1">Bienvenido</h4>
                 </div>
 
-                <form>
+                <form class="form" [formGroup]="formulario">
                   <p>Por favor ingrese su cuenta</p>
 
                   <div class="form-outline mb-4">
-                    <input type="user" id="form2Example11" class="form-control"
-                      placeholder="Phone number or email address" />
-                    <label class="form-label" for="form2Example11">Nombre de Usuario</label>
+                    <input id="user" type="text" class="form-control" formControlName="user"
+                      placeholder="Usuario" />
+                    <label class="form-label" >Nombre de Usuario</label>
                   </div>
 
                   <div class="form-outline mb-4">
-                    <input type="password" id="form2Example22" class="form-control" />
-                    <label class="form-label" for="form2Example22">Contraseña</label>
+                    <input id="password" type="password" class="form-control" formControlName="password"
+                    placeholder="Contraseña" />
+                    <label class="form-label" >Contraseña</label>
                   </div>
 
                   <div class="text-center pt-1 mb-5 pb-1">
