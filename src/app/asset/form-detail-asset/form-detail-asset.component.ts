@@ -37,7 +37,7 @@ export class FormDetailAssetComponent implements OnInit, OnChanges {
       this.formDetail.controls['assetCode'].setValue(this.assetDTO!.assetCode);
       this.formDetail.controls['location'].setValue(this.assetDTO!.location);
       this.formDetail.controls['category'].setValue(this.assetDTO!.category.name);
-      this.formDetail.controls['responsible'].setValue(String(this.assetDTO!.userResponsible));
+      this.formDetail.controls['responsible'].setValue(this.assetDTO!.userResponsible.person.firstName + ' ' + this.assetDTO!.userResponsible.person.firstName);
       this.listProperties = this.assetDTO!.properties;
     }
   }

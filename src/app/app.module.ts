@@ -19,6 +19,7 @@ import { ListTemplateComponent } from './template/list-template/list-template.co
 import { DetailTemplateComponent } from './template/detail-template/detail-template.component';
 import { LoginComponent } from './login/login.component';
 import { DatePipe } from '@angular/common';
+import { FormListComponent } from './user/form-list/form-list.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { DatePipe } from '@angular/common';
     DashboardAssetDetailComponent,
     ListTemplateComponent,
     DetailTemplateComponent,
-    LoginComponent
+    LoginComponent,
+    FormListComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,63 @@
+<div class="content-wrapper">
+    <div class="container">
+        <form [formGroup]="searchForm">
+          <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="container container-fluid">
+                <div>
+                  <label>Busqueda</label>
+                </div>
+                <div>
+                  <input type="text" class="form-control" name="txtSearch" id="txtSearch" formControlName="txtSearch"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 grid-margin stretch-card mt-3">
+              <div class="mt-3">
+                <button type="submit"  class="btn btn-primary form-button">Buscar</button>
+              </div>
+            </div>
+          </div>
+        </form>
+    </div>
+    <div class="container container-fluid">
+        <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th [width]="'10%'">Usuario</th>
+                      <th [width]="'30%'">Nombres</th>
+                      <th [width]="'20%'">Documento</th>
+                      <th [width]="'20%'">Género</th>
+                      <th [width]="'10%'">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let user of listUser">
+                      <td>{{ user.userName }}</td>
+                      <td>{{ user.person.firstName + ' ' + user.person.lastName }}</td>
+                      <td>{{ user.person.identificationType.abbreviation + '-' + user.person.identificationNumber }}</td>
+                      <td>{{ user.person.genre }}</td>
+                      <td>
+                        <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Acción
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" [routerLink]="['/dashboard-asset']" [queryParams]="{ id: user.id }">Ver Detalle</a>
+                            <a class="dropdown-item" [routerLink]="['/update-asset']" [queryParams]="{ id: user.id }">Modificar</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+    </div>
+    
+  </div>
