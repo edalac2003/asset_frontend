@@ -4,7 +4,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AssetDTO } from 'src/app/model/AssetDTO';
 import { IoTRequest } from 'src/app/model/IoTRequest';
-import { IoTResponse } from 'src/app/model/IoTResponse';
 import { IoTProperty } from 'src/app/model/IotProperty';
 import { AssetService } from 'src/app/services/asset.service';
 import { IotService } from 'src/app/services/iot.service';
@@ -26,7 +25,7 @@ export class DashboardAssetDetailComponent implements OnInit, OnChanges {
   listDataIot: IoTProperty[] = [];
   groupProperties: any;
 
-  // chartVoltage: ApexCharts = new ApexCharts(document.querySelector("#chartVoltage"), {});
+  chartVoltage!: ApexCharts;
 
   searchForm = new FormGroup({
     dateFromSelected: new FormControl(this.datePipe.transform(new Date(), 'yyyy-MM-ddTHH:mm'), [Validators.required]),
@@ -39,11 +38,11 @@ export class DashboardAssetDetailComponent implements OnInit, OnChanges {
     private iotService: IotService,
     private assetService: AssetService
   ){
-    // this.chartVoltage = new ApexCharts(document.querySelector("#chartVoltage"), {});
+    
    }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // this.showChartVoltage(this.listDataIot);
+    this.chartVoltage.render();
   }
 
   ngOnInit(): void {
@@ -63,7 +62,7 @@ export class DashboardAssetDetailComponent implements OnInit, OnChanges {
         stacked: false
       },
       dataLabels: {
-        enabled: false
+        enabled: true
       },
       colors: [this.COLOR_VOLTAGE_SERIE, this.COLOR_STREAM_SERIE, this.COLOR_TEMPERATUR_SERIE],
       series: [
@@ -81,7 +80,7 @@ export class DashboardAssetDetailComponent implements OnInit, OnChanges {
         }
       ],
       stroke: {
-        width: [4, 4, 4]
+        width: [3, 3, 3]
       },
       plotOptions: {
         bar: {
@@ -89,7 +88,7 @@ export class DashboardAssetDetailComponent implements OnInit, OnChanges {
         }
       },
       xaxis: {
-        categories: this.getArrayChartCategories(this.groupProperties['VOLTAJE'])
+        categories: this.getArrayChartCategories(data)
       },
       yaxis: [
         {
@@ -168,12 +167,11 @@ export class DashboardAssetDetailComponent implements OnInit, OnChanges {
       }
     };
     
-    var chartVoltage = new ApexCharts(document.querySelector("#chartVoltage"), options);
-    chartVoltage.updateOptions(options)
-    chartVoltage.render();
+    this.chartVoltage = new ApexCharts(document.querySelector("#chartVoltage"), options);
+    this.chartVoltage.render();
   }
 
-  findDashboardData(){
+  async findDashboardData(){
     var fromDate = this.searchForm.get('dateFromSelected')?.value;
     var toDate = this.searchForm.get('dateToSelected')?.value;
     var iotRequest = new IoTRequest();
@@ -181,13 +179,12 @@ export class DashboardAssetDetailComponent implements OnInit, OnChanges {
     iotRequest.iotSensorId = 1;
     iotRequest.fromDateTime = String(fromDate);
     iotRequest.toDateTime = String(toDate);
-    this.iotService.finbByAssetIdAndIotSensorIdAndDate(iotRequest).pipe().subscribe(
-      (data) => { 
-        this.listDataIot = data.listData; 
+    this.iotService.finbByAssetIdAndIotSensorIdAndDate(iotRequest).then(
+      data => data.subscribe(d => {
+        this.listDataIot = d.listData;
         this.groupingByProperties()
-      },
-      (error) => { console.log(error); }
-    );
+      })
+    ).catch( err => console.log(err) );
   }
 
   loadAssetData(){
@@ -213,6 +210,6 @@ export class DashboardAssetDetailComponent implements OnInit, OnChanges {
   }
 
   getArrayChartCategories(data: IoTProperty[]): String[] {
-    return data.map(d => d.dateTime.replace('T', ' ')); 
+    return data.map(d => d.dateTime.substring(d.dateTime.indexOf('T') + 1, d.dateTime.length - 3)); 
   }
 }

@@ -15,7 +15,7 @@ export class IotService {
     private http:HttpClient
   ) { }
 
-  finbByAssetIdAndIotSensorIdAndDate(request: IoTRequest): Observable<IoTResponse>{
+  async finbByAssetIdAndIotSensorIdAndDate(request: IoTRequest): Promise<Observable<IoTResponse>>{
     this.configUrl = '/asset/iot/findByIotSensorAndAssetAndDatetime';
     return this.http.patch<IoTResponse>(this.configUrl, request);
   }

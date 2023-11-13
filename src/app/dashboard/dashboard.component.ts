@@ -7,229 +7,157 @@ import { ApexOptions } from 'apexcharts';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  assetName: string = 'Aire acondicionado';
+  ARRAY_MONTH_1 = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'];
+  ARRAY_MONTH_2 = ['Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
   constructor() {}
 
   ngOnInit(): void {
-    this.showChartVoltage();
-    this.showChartStream();
-    this.showChartTemperature();
-    this.showChartAssetCategory();
     this.showChartRequest();
-    this.showChartClose();
+    this.showChartRepairs();
+    this.showChartCost();
 
     console.log('');
   }
 
-  showChartVoltage() {
+  showChartRequest() {
     var options = {
       chart: {
-        type: 'line',
-      },
-      series: [
-        {
-          name: 'Voltaje',
-          data: [118, 115, 118, 110, 115, 120, 118, 117, 110],
-        },
-      ],
-      xaxis: {
-        categories: [
-          '10:30',
-          '10:35',
-          '10:40',
-          '10:45',
-          '10:55',
-          '11:00',
-          '11:05',
-          '11:10',
-          '11:15',
-        ],
-      },
-      stroke: {
-        curve: 'smooth',
-      },
-    };
-    var chartVoltage = new ApexCharts(
-      document.querySelector('#chartVoltage'),
-      options
-    );
-    chartVoltage.render();
-  }
-
-  showChartStream() {
-    var options = {
-      chart: {
-        type: 'line',
-      },
-      series: [
-        {
-          name: 'Corriente',
-          data: [5, 5, 4.5, 4.2, 4.8, 4.1, 4.5, 4.8, 5],
-        },
-      ],
-      xaxis: {
-        categories: [
-          '10:30',
-          '10:35',
-          '10:40',
-          '10:45',
-          '10:55',
-          '11:00',
-          '11:05',
-          '11:10',
-          '11:15',
-        ],
-      },
-      stroke: {
-        curve: 'smooth',
-      },
-    };
-    var chartStream = new ApexCharts(
-      document.querySelector('#chartStream'),
-      options
-    );
-    chartStream.render();
-  }
-
-  showChartTemperature() {
-    var options = {
-      chart: {
-        type: 'line',
-      },
-      series: [
-        {
-          name: 'Temperatura',
-          data: [21, 25, 23, 27, 22, 23, 22, 25, 24],
-        },
-      ],
-      xaxis: {
-        categories: [
-          '10:30',
-          '10:35',
-          '10:40',
-          '10:45',
-          '10:55',
-          '11:00',
-          '11:05',
-          '11:10',
-          '11:15',
-        ],
-      },
-      stroke: {
-        curve: 'smooth',
-      },
-    };
-    var chartTemperature = new ApexCharts(
-      document.querySelector('#chartTemperature'),
-      options
-    );
-    chartTemperature.render();
-  }
-
-  showChartAssetCategory() {
-    var options = {
-      chart: {
+        height: 350,
         type: 'bar',
       },
       series: [
         {
           name: 'Solicitudes',
-          data: [21, 25, 23, 27, 22, 23],
+          data: [77, 83, 80, 75, 82, 87],
         },
       ],
       xaxis: {
-        categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
+        categories: this.ARRAY_MONTH_2,
       },
       stroke: {
         curve: 'smooth',
       },
     };
-    var chartAssetCategory = new ApexCharts(
-      document.querySelector('#chartAssetCategory'),
-      options
-    );
-    chartAssetCategory.render();
-  }
-
-  showChartRequest() {
-    // var options = {
-    //   chart: {
-    //     type: 'donut',
-    //   },
-    //   series: [
-    //     {
-    //       name: 'Solicitudes Abiertas',
-    //       data: [21, 25, 23, 27, 22, 23],
-    //     },
-    //   ],
-    //   xaxis: {
-    //     categories: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio'],
-    //   },
-    //   stroke: {
-    //     curve: 'smooth',
-    //   },
-    // };
-    var options = {
-      // plotOptions: {
-      //   pie: {
-      //     size: 200,
-      //     donut: {
-      //       labels: {
-      //         show: true,
-      //         name: {
-      //           name: 'Solicitudes Abiertas',
-      //         },
-      //         value: {
-      //           ['Apple', 'Mango', 'Orange', 'Watermelon']
-      //         }
-      //       }
-      //     }
-      //   },
-      //   dataLabels: {
-      //     enabled: true,
-      //     formatter: function (valor) {
-      //       return valor + "%"
-      //     },
-      //     dropShadow: {
-      //       ...
-      //     }
-      //   }
-      // }
-    }
     var chartRequest = new ApexCharts(document.querySelector('#chartRequest'), options);
     chartRequest.render();
   }
 
-  showChartClose() {
+  showChartRepairs() {
     var options = {
       chart: {
+        height: 300,
         type: 'line',
+      },
+      dataLabels: {
+        enabled: true
       },
       series: [
         {
-          name: 'Temperatura',
-          data: [21, 25, 23, 27, 22, 23, 22, 25, 24],
+          name: 'Reparaciones',
+          data: [46, 53, 46, 42, 35, 38],
         },
       ],
       xaxis: {
-        categories: [
-          '10:30',
-          '10:35',
-          '10:40',
-          '10:45',
-          '10:55',
-          '11:00',
-          '11:05',
-          '11:10',
-          '11:15',
-        ],
+        categories: this.ARRAY_MONTH_2,
       },
       stroke: {
         curve: 'smooth',
       },
     };
-    var chartClose = new ApexCharts(document.querySelector('#chartClose'), options);
-    chartClose.render();
+    var chartRepairs = new ApexCharts(document.querySelector('#chartRepairs'), options);
+    chartRepairs.render();
+  }
+
+  showChartCost() {
+    var options = {
+      chart: {
+        height: 300,
+        type: "line",
+        stacked: false
+      },
+      dataLabels: {
+        enabled: true
+      },
+      colors: ["#FF1654", "#247BA0"],
+      series: [
+        {
+          name: "Mantenimiento",
+          data: [1.4, 2, 2.5, 1.5]
+        },
+        {
+          name: "Reparaciones",
+          data: [27, 37, 29, 28]
+        }
+      ],
+      stroke: {
+        width: [4, 4],
+        curve: 'smooth'
+      },
+      plotOptions: {
+        bar: {
+          columnWidth: "20%"
+        }
+      },
+      xaxis: {
+        categories: this.ARRAY_MONTH_2
+      },
+      yaxis: [
+        {
+          axisTicks: {
+            show: true
+          },
+          axisBorder: {
+            show: true,
+            color: "#FF1654"
+          },
+          labels: {
+            style: {
+              colors: "#FF1654"
+            }
+          },
+          title: {
+            text: "Mantenimiento",
+            style: {
+              color: "#FF1654"
+            }
+          }
+        },
+        {
+          opposite: true,
+          axisTicks: {
+            show: true
+          },
+          axisBorder: {
+            show: true,
+            color: "#247BA0"
+          },
+          labels: {
+            style: {
+              colors: "#247BA0"
+            }
+          },
+          title: {
+            text: "Reparaciones",
+            style: {
+              color: "#247BA0"
+            }
+          }
+        }
+      ],
+      tooltip: {
+        shared: false,
+        intersect: true,
+        x: {
+          show: true
+        }
+      },
+      legend: {
+        horizontalAlign: "left",
+        offsetX: 40
+      }
+    };
+    var chartCost = new ApexCharts(document.querySelector('#chartCost'), options);
+    chartCost.render();
   }
 }
