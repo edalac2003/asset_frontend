@@ -55,6 +55,7 @@ import { ListTemplateComponent } from './template/list-template/list-template.co
 import { DetailTemplateComponent } from './template/detail-template/detail-template.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from 'src/app/guards/auth.guard';
+import { FormListComponent } from './user/form-list/form-list.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -68,6 +69,7 @@ const routes: Routes = [
   { path: 'create-template', component: CreateTemplateComponent, canActivate: [AuthGuard] },
   { path: 'detail-template', component: DetailTemplateComponent, canActivate: [AuthGuard] },
   { path: 'list-template', component: ListTemplateComponent, canActivate: [AuthGuard] },
+  { path: 'list-user', component: FormListComponent, canActivate: [AuthGuard] },
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
