@@ -17,6 +17,7 @@ import { DashboardAssetDetailComponent } from './asset/dashboard-asset-detail/da
 import { CreateTemplateComponent } from './template/create-template/create-template.component';
 import { ListTemplateComponent } from './template/list-template/list-template.component';
 import { DetailTemplateComponent } from './template/detail-template/detail-template.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -38,9 +39,9 @@ import { DetailTemplateComponent } from './template/detail-template/detail-templ
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 

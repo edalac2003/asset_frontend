@@ -31,4 +31,9 @@ export class AssetService {
       tap(() => this.getAssetFindAll().subscribe()) // Recarga la lista después de crear un activo
     );
   }
+
+  getAssetFindById(assetId: number): Observable<AssetDTO> {
+    this.configUrl = '/asset/findById/' + assetId;
+    return this.http.get<AssetDTO>(this.configUrl);
+  }
 }

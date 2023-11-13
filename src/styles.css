@@ -1,11 +1,14 @@
 .form-label {
     display: inline-block;
-    /* width: 100%;
-    max-width: 100%;
-    padding: 0;
-    margin-bottom: .5rem; */
     font-size: 1rem;
-    /* line-height: inherit; */
+    line-height: inherit;
+    color: #919191;
+    white-space: normal;
+  }
+
+  .form-label-detail {
+    display: inline-block;
+    font-size: 1rem;
     color: #ffffff;
     white-space: normal;
   }
@@ -22,6 +25,10 @@
     margin-top: 0;
     margin-right: 0.3125rem;
     margin-left: 0; 
+}
+
+.form-button {
+    line-height: inherit;
 }
 
 .form-control{

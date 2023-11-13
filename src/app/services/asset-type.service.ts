@@ -22,4 +22,9 @@ export class AssetTypeService {
     this.configUrl = '/asset/asset-type/findAll';
     return this.http.get<AssetTypeDTO[]>(this.configUrl);
   }
+
+  findById(id: number): Observable<AssetTypeDTO>{
+    this.configUrl = '/asset/asset-type/findById/'+ id;
+    return this.http.get<AssetTypeDTO>(this.configUrl);
+  }
 }

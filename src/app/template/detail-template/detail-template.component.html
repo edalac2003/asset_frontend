@@ -1,33 +1,32 @@
 <div>
   <div class="col-md-12 grid-margin stretch-card">
     <div class="card">
-      <div class="card-body">
+      <div class="mt-4" style="text-align: center;">
         <h4 class="card-title">Registrar Categoria Activo Fijo</h4>
+      </div>
+      <div class="card-body">
         <div class="row">
           <div class="col-md-6 form-group">
             <label class="form-label">Nombre Plantilla</label>
-            <input id="templateName" type="text" class="form-control" formControlName="templateName"
-              placeholder="Nombre Plantilla" aria-label="Template name" />
+            <div>
+              <label class="form-label-detail">{{assetTypeDTO.name}}</label>
+            </div>
           </div>
           <div class="col-md-6 form-group">
             <label class="form-label">Categoria</label>
-            <input id="categoryName" type="text" class="form-control" formControlName="categoryName"
-              placeholder="Categoria" aria-label="Template name" />
+            <div>
+              <label class="form-label-detail">{{assetTypeDTO.category?.name}}</label>
+            </div>
           </div>
         </div>
-        <div class="row mt-1">
-            <label class="form-label">Propiedades</label>
+        <div class="row mt-0">
+          <label class="form-label">Propiedades</label>
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="table-responsive">
               <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <!-- <th width="75%">Propiedad</th> -->
-                  </tr>
-                </thead>
                 <tbody>
                   <tr *ngFor="let property of listProperties">
-                    <td>{{ property.name }}</td>
+                    <td>{{ property.property?.name }}</td>
                   </tr>
                 </tbody>
               </table>
