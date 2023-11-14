@@ -201,8 +201,9 @@ export class DashboardAssetDetailComponent implements OnInit, OnChanges {
       group[item.propertyName].push(item);
       return group;
     }, {});
-
-    this.showChartVoltage(this.groupProperties['VOLTAJE']);
+    if(this.groupProperties && this.groupProperties.length > 0){
+      this.showChartVoltage(this.groupProperties['VOLTAJE']);
+    }
   }
 
   getArrayChartData(data: IoTProperty[]): String[] {
