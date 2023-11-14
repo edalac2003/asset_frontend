@@ -3,7 +3,6 @@ import { CategoryDTO } from 'src/app/model/CategoryDTO';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from 'src/app/services/category.service';
 import { AssetService } from 'src/app/services/asset.service';
-import { AssetDTO } from 'src/app/model/AssetDTO';
 import { Router } from '@angular/router';
 import { PropertyDTO } from 'src/app/model/PropertyDTO';
 import { PropertyService } from 'src/app/services/property.service';
