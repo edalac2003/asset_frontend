@@ -2,7 +2,6 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { FormControl, FormControlName, FormGroup } from '@angular/forms';
 import { AssetDTO } from 'src/app/model/AssetDTO';
 import { AssetPropertyDTO } from 'src/app/model/AssetPropertyDTO';
-import { AssetTypeDetailDTO } from 'src/app/model/AssetTypeDetailDTO';
 
 @Component({
   selector: 'detail-asset',
@@ -37,7 +36,7 @@ export class FormDetailAssetComponent implements OnInit, OnChanges {
       this.formDetail.controls['assetCode'].setValue(this.assetDTO!.assetCode);
       this.formDetail.controls['location'].setValue(this.assetDTO!.location);
       this.formDetail.controls['category'].setValue(this.assetDTO!.category.name);
-      this.formDetail.controls['responsible'].setValue(this.assetDTO!.userResponsible.person.firstName + ' ' + this.assetDTO!.userResponsible.person.firstName);
+      this.formDetail.controls['responsible'].setValue(this.assetDTO!.userResponsible.person.firstName + ' ' + this.assetDTO!.userResponsible.person.lastName);
       this.listProperties = this.assetDTO!.properties;
     }
   }
