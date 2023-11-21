@@ -1,10 +1,9 @@
 import { AssetPropertyDTO } from "./AssetPropertyDTO";
 import { CategoryDTO } from "./CategoryDTO";
-import { PropertyDTO } from "./PropertyDTO";
 import { UserDTO } from "./userDTO";
 
 export interface AssetDTO{
-    id: Number;
+    id?: number;
     assetCode: string;
     purchaseValue: number;
     purchaseDate: string;

@@ -12,6 +12,7 @@ import { AssetTypeService } from 'src/app/services/asset-type.service';
 import { AssetTypeDetailDTO } from 'src/app/model/AssetTypeDetailDTO';
 import {ResponsableService } from 'src/app/services/responsable.service'
 import { UserDTO } from 'src/app/model/userDTO';
+import { AssetPropertyDTO } from 'src/app/model/AssetPropertyDTO';
 
 @Component({
   selector: 'app-create-asset',
@@ -160,23 +161,31 @@ export class CreateAssetComponent implements OnInit {
   createAsset(){
     if (this.formulario.valid) {
       let asset = this.formulario.value;
-      console.log('asset',asset);
-      asset.category = this.selectedCategory;
-      asset.userResponsible = this.selecteduserResponsible;
-      asset.properties = this.listAssetTypeDetail.map(
-        ({
-          property,
-        }) => ({
-          property,
-          value: Object.keys(this.dynamicFormControls).forEach((propertyName) => {
-            propertyName === property.name ? this.dynamicFormControls[propertyName]?.value: null;            
-          }),
-        })
-      );
+      let assetDTO: AssetDTO = {
+        assetCode: asset.assetCode,
+        purchaseValue: asset.purchaseValue,
+        purchaseDate: asset.purchaseDate,
+        usefullLifetime: asset.usefullLifetime,
+        userResponsible: this.selecteduserResponsible,
+        location: asset.location,
+        status: true,
+        category: this.selectedCategory,
+        properties: this.getListPropertiesDTO()
+      };
+      console.log('asset: ',assetDTO);
       
-      this.assetService.postCreateAsset(asset).subscribe(() => {
-      this.router.navigate(['/list-asset']);
+      this.assetService.postCreateAsset(assetDTO).subscribe(() => {
+        this.router.navigate(['/list-asset']);
       });
-    } 
+    }     
+  }
+
+  private getListPropertiesDTO(): AssetPropertyDTO[]{
+    return this.listAssetTypeDetail.map( type => {
+       const assetProperty = new AssetPropertyDTO();
+       assetProperty.property = type.property;
+       assetProperty.value = this.dynamicFormControls[type.property.name]?.value
+       return assetProperty;
+    });
   }
 }

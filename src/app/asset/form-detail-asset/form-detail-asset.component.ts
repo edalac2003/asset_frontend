@@ -3,6 +3,8 @@ import { FormControl, FormControlName, FormGroup } from '@angular/forms';
 import { AssetDTO } from 'src/app/model/AssetDTO';
 import { AssetPropertyDTO } from 'src/app/model/AssetPropertyDTO';
 import { AssetTypeDetailDTO } from 'src/app/model/AssetTypeDetailDTO';
+import { CategoryDTO } from 'src/app/model/CategoryDTO';
+import { UserDTO } from 'src/app/model/userDTO';
 
 @Component({
   selector: 'detail-asset',
@@ -14,7 +16,17 @@ export class FormDetailAssetComponent implements OnInit, OnChanges {
   assetName: string = "Aire acondicionado";
   listProperties: AssetPropertyDTO[] = [];
 
-  @Input() assetDTO!: AssetDTO;
+  @Input() assetDTO: AssetDTO = {
+    assetCode: '',
+    purchaseValue: 0,
+    purchaseDate: '',
+    usefullLifetime: 0,
+    userResponsible: new UserDTO,
+    location: '',
+    status: false,
+    category: new CategoryDTO,
+    properties: []
+  };
 
   formDetail = new FormGroup({
     assetCode: new FormControl(''),
