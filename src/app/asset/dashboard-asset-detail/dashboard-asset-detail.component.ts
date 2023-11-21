@@ -62,7 +62,7 @@ export class DashboardAssetDetailComponent implements OnInit, OnChanges {
         stacked: false
       },
       dataLabels: {
-        enabled: true
+        enabled: false
       },
       colors: [this.COLOR_VOLTAGE_SERIE, this.COLOR_STREAM_SERIE, this.COLOR_TEMPERATUR_SERIE],
       series: [

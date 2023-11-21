@@ -1,32 +1,31 @@
 // auth.service.ts
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedIn: boolean = false;
-  private isLoggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
 
-  constructor() { }
 
-  isLoggedIn(){
-    return this.loggedIn
+  constructor(private router: Router) {}
+
+  // Función para almacenar información de sesión
+  setSession(user: any): void {
+    sessionStorage.setItem('user', JSON.stringify(user));
+    this.router.navigate(['/dashboard']); // Redirige al usuario a la página de dashboard después de iniciar sesión
   }
 
-  login(username: string, password: string):void {
-    if(username == 'admin' && password == 'admin'){
-      this.loggedIn = true;
-      this.isLoggedInSubject.next(true);
-    }
+  // Función para obtener información de sesión
+  getSession(): any {
+    const user = sessionStorage.getItem('user');
+    return user ? JSON.parse(user) : null;
   }
 
-  logout():void  {
-    // Lógica de cierre de sesión aquí
-    this.loggedIn = false;
-    this.isLoggedInSubject.next(false);
-    
+  // Función para cerrar sesión
+  logout(): void {
+    sessionStorage.removeItem('user');
+    this.router.navigate(['/login']); // Redirige al usuario a la página de inicio de sesión después de cerrar sesión
   }
 }

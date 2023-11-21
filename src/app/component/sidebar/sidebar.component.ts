@@ -6,13 +6,11 @@ import { AuthService } from 'src/app/services/auth.service'
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent implements OnInit {
-  isLoggedIn: boolean = false;
-  isLoggedIn$ = this.authService.isLoggedIn$;
+export class SidebarComponent  {
 
   constructor(private authService: AuthService) {}
 
-  ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn();
+  isLoggedIn(): boolean {
+    return this.authService.getSession() !== null;
   }
 }

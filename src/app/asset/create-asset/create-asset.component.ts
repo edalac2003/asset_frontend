@@ -162,6 +162,7 @@ export class CreateAssetComponent implements OnInit {
       let asset = this.formulario.value;
       console.log('asset',asset);
       asset.category = this.selectedCategory;
+      asset.userResponsible = this.selecteduserResponsible;
       asset.properties = this.listAssetTypeDetail.map(
         ({
           property,
