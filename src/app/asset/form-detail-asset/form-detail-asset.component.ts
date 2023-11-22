@@ -46,6 +46,7 @@ export class FormDetailAssetComponent implements OnInit, OnChanges {
 
   showData(){
     if(this.assetDTO){
+      this.assetName = this.assetDTO.assetCode;
       this.formDetail.controls['assetCode'].setValue(this.assetDTO!.assetCode);
       this.formDetail.controls['location'].setValue(this.assetDTO!.location);
       this.formDetail.controls['category'].setValue(this.assetDTO!.category.name);
