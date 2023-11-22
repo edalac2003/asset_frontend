@@ -201,7 +201,7 @@ export class DashboardAssetDetailComponent implements OnInit, OnChanges {
       group[item.propertyName].push(item);
       return group;
     }, {});
-    if(this.groupProperties && this.groupProperties.length > 0){
+    if(this.groupProperties){
       this.showChartVoltage(this.groupProperties['VOLTAJE']);
     }
   }
