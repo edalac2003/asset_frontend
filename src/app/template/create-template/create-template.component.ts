@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Route } from '@angular/router';
 import { ConfigService } from 'src/app/config/config.service';
 import { AssetTypeDTO } from 'src/app/model/AssetTypeDTO';
 import { AssetTypeDetailDTO } from 'src/app/model/AssetTypeDetailDTO';
@@ -9,6 +8,7 @@ import { PropertyDTO } from 'src/app/model/PropertyDTO';
 import { AssetTypeService } from 'src/app/services/asset-type.service';
 import { CategoryService } from 'src/app/services/category.service';
 import { PropertyService } from 'src/app/services/property.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-template',
@@ -35,7 +35,8 @@ export class CreateTemplateComponent implements OnInit {
   constructor(
     private categoryService: CategoryService,
     private propertyService: PropertyService,
-    private assetTypeService: AssetTypeService
+    private assetTypeService: AssetTypeService,
+    private router: Router
   ){   }
   
 
@@ -120,5 +121,6 @@ export class CreateTemplateComponent implements OnInit {
     var response = this.assetTypeService.create(assetTypeDTO).subscribe(
       data => console.log(data)
     );
+    this.router.navigate(['/list-template']);
   }
 }
